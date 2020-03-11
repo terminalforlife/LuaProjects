@@ -162,3 +162,14 @@ CoRout = coroutine.create(
 -- Calling the above defined coroutine. You cannot resume a coroutine which has
 -- already finished (thus "dead"), so care should be taken.
 coroutine.resume(CoRout)
+
+-- Display the current status (in this case, 'suspended') of a coroutine.
+print("Coroutine 'CoRout' is in the '" .. coroutine.status(CoRout) .. "' state.")
+
+-- Demonstration of the `pairs()` function, which is like the `keys()` function
+-- in Perl, except it'll both keys AND their paired value. In this example, you
+-- can see that tables, or at least hash-types thereof, are also randomized.
+print("Contents of the 'Hash' table:")
+for Key, Value in pairs(Hash) do
+	print("\tKey '" .. Key .. "' is equal to '" .. Value .. "'.")
+end
