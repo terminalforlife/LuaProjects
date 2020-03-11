@@ -18,6 +18,9 @@
 --
 -- Like in Shell, no error occurs simply because an undefined variable's value
 -- is requested, unlike languages like Perl which are by default more strict.
+--
+-- Using `dofile()`, `loadfile()`, or `load()` lets you run external code. See
+-- Further down for an example of all but the latter.
 -------------------------------------------------------------------------------
 
 -- The usual. Same syntax as Perl and many other languages, it seems.
@@ -134,3 +137,28 @@ end
 -- Or, you can return a value using the `return` command in a function, as done
 -- in the above function definition.
 print(Func())
+
+-- This will load up and immediately execute the provided Lua file. This is
+-- apparently the slowest method.
+dofile('./module.lua')
+-- Whereas this will load up but NOT execute the file. Instead, the file is
+-- wrapped within a function, the name for which you give it, as shown below.
+FileFunc = loadfile('./module.lua')
+
+-- Coroutines are useful, apparently, which seems to be because of their stop
+-- and start ability. They seem to be very flexible in when they can run.
+CoRout = coroutine.create(
+	function()
+		print("I'm inside of a coroutine!")
+
+		-- Using the `yield()` function seems to say "stop here, until you're
+		-- told to resume() again`; pretty damn awesome!
+		coroutine.yield()
+
+		print("I'm still inside of a coroutine!")
+	end
+)
+
+-- Calling the above defined coroutine. You cannot resume a coroutine which has
+-- already finished (thus "dead"), so care should be taken.
+coroutine.resume(CoRout)
