@@ -11,6 +11,13 @@
 --
 -- Logical 'and' and 'or' comparison operators are in Lua too, seeming to work
 -- much as they do in Perl.
+--
+-- Scoping works in Lua much how it does in Shell, it seems, except that when
+-- a function assigns a variable within, it will not then be accessible outside
+-- of itself, regardless of whether the function is called or not.
+--
+-- Like in Shell, no error occurs simply because an undefined variable's value
+-- is requested, unlike languages like Perl which are by default more strict.
 -------------------------------------------------------------------------------
 
 -- The usual. Same syntax as Perl and many other languages, it seems.
@@ -87,6 +94,9 @@ until Count == 3
 
 -- Bizarrely, Lua's indexing of tables begin at 1! Very unusual. So, here we're
 -- just assigning a table, which is basically an array.
+--
+-- Assigning indeces or the table itself to `nil` will free up the memory, much
+-- how it would in other languages; the need for this depends on the scope.
 Array = {'index one', 'index' .. 2, 5, type(Count)}
 print("Index '4' of table 'Array' is '" .. Array[4] .. "'.")
 
@@ -98,4 +108,29 @@ Hash = {one = 1, two = 2, three = 3}
 
 -- Accessing the "table" is much like OO interfaces, which is kinda cool.
 -- Tables are also used to create classes, similar to hashes in Perl.
-print(Hash.two)
+print("Value of 'two' is: " .. Hash.two)
+
+-- The `#` operator(?) is used exactly how it is in Shell, except it doesn't
+-- seem to work with hash-style "tables", but array-style "tables" are fine.
+print('There are ' .. #Array .. "' indeces in the 'Array' table.")
+
+-- Defining a function works more like in VimScript. The parentheses are usable
+-- though, as in JS or Perl. Functions are considered a variable type in Lua, -
+-- which is apparently very important.
+function Func()
+	print("I'm inside a function!")
+end
+
+-- Calling a function is like in VimScript, AWK, Perl, JS, etc.
+Func()
+
+-- You can also define a function by using the following syntax:
+Func = function()
+	Value = "I'm still inside a function!"
+
+	return(Value)
+end
+
+-- Or, you can return a value using the `return` command in a function, as done
+-- in the above function definition.
+print(Func())
