@@ -23,7 +23,7 @@ print('Hello World!')
 -- Variable types: number (int & float; same approach as JavaScript), string, -
 --                 boolean, table, thread, and userdata, nil, function
 --
---                 Tables are basically arrays. Threads are called
+--                 Tables are basically arrays OR hashes. Threads are called
 --                 "co-routines", according to KarmaKilledtheCat (YouTube). The
 --                 userdata type allows you to store raw C data.
 Key = 'Value'
@@ -61,3 +61,41 @@ if type(Key) == 'string' then
 	print("The 'Key' variable is of type '" .. type(Key) .. "'.")
 end
 
+Count = 0
+while true do
+	Count = Count + 1
+	print('Iteration: ' .. Count)
+
+	-- Using one-line syntax. Very strange, without something to separate
+	-- commands from keywords, but there you go. Probably a better method.
+	-- Weirdly enough, Lua only has `break`; no `continue` or `next`.
+	if Count == 3 then break end
+end
+
+-- By default, a for loop increments by 1. The initial condition is like half
+-- of the C-style condition, unless something other than +1 is required.
+for Count = 0, 3 do
+	print('Iteration: ' .. Count)
+end
+
+-- The `repeat until` loop is basically a backwards while loop. Although it
+-- seems like it's barely used and the developers themselves apparently are or
+-- were thinking of ditching it.
+repeat
+	print('blah')
+until Count == 3
+
+-- Bizarrely, Lua's indexing of tables begin at 1! Very unusual. So, here we're
+-- just assigning a table, which is basically an array.
+Array = {'index one', 'index' .. 2, 5, type(Count)}
+print("Index '4' of table 'Array' is '" .. Array[4] .. "'.")
+
+-- A hash (also a table, ambiguously enough) is basically the same thing as an
+-- array form, but with key=value pairs, similar to hashes in Perl. Oddly, -
+-- though, you don't quote the names. This is getting weirder each second.
+-- These keys can also be numeric, instead of strings.
+Hash = {one = 1, two = 2, three = 3}
+
+-- Accessing the "table" is much like OO interfaces, which is kinda cool.
+-- Tables are also used to create classes, similar to hashes in Perl.
+print(Hash.two)
