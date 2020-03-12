@@ -15,3 +15,9 @@
 -- any arguments (no formatting, basically), `date()` would just output a
 -- pre-formatted date AND time, much like date(1)'s default functionality.
 FileName = os.date('%F_%X.txt')
+
+-- Execute a Shell command, much like `os.system()` in Perl.
+os.execute("echo 'I am echo(1), and you executed me from the shell!'")
+
+-- Same functionality as the `%ENV` hash in Perl and `environ()` in AWK.
+print('I am ' .. os.getenv('USER') .. ', and my UID is ' .. os.getid)
