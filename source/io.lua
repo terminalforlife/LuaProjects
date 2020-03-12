@@ -55,6 +55,9 @@ io.input('./io.lua')
 --
 -- It's also possible to read N number of lines, by giving the `read()`
 -- function the `'*N'` argument, where N is the number of lines to read.
+--
+-- Presumably after the above usage (of N), you can tell read to read N
+-- number of characters from the file, instead of just lines.
 for Line in io.lines() do
 	print(Line)
 end
