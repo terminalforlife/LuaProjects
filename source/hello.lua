@@ -174,3 +174,9 @@ print("Contents of the 'Hash' table:")
 for Key, Value in pairs(Hash) do
 	print("\tKey '" .. Key .. "' is equal to '" .. Value .. "'.")
 end
+
+-- Here, the `:match()` function seems to work like grep(1)'s `-o` flag. This
+-- might be because it's just one line of input. With multi-line input, it does
+-- seem to work like regular grep(1).
+A = 'do not do that, or else'
+print(A:match('or'))

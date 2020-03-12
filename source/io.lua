@@ -30,12 +30,31 @@ io.input('./io.lua')
 -- line with just: `while true do`
 --
 -- The `math.huge` (`math` being a module) stores an infinite (kinda?) value.
-for Int = 1, math.huge do
-	Line = io.read()
+--
+-- The `elseif` condition is awesome, here. In Lua, you can suffix the
+-- `match()` function, like: `Variable:match(REGEX)` This can be used for
+-- testing and hopefully plenty of other cool things.
+--for Int = 1, math.huge do
+--	Line = io.read()
+--
+--	if type(Line) == 'nil' then
+--		break
+--	elseif not Line:match('^-') then
+--		print(Line)
+--	end
+--end
 
-	if type(Line) == 'nil' then
-		break
-	else
-		print(Line)
-	end
+-- Oh for crying out loud. KarmaKilledtheCat (YouTube) failed to mention this
+-- far better method of reading files, until much later! This is incredible!
+-- So much cleaner than languages like Perl. I'm loving Lua so far.
+--
+-- So, presumably, `io.lines()` returns an array (table) consisting of each
+-- line in the file, over which the `for` loop iterates, per `Line` variable.
+--
+-- No need to break from the loop if the `Line` is `nil`, here!
+--
+-- It's also possible to read N number of lines, by giving the `read()`
+-- function the `'*N'` argument, where N is the number of lines to read.
+for Line in io.lines() do
+	print(Line)
 end
