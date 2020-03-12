@@ -180,3 +180,11 @@ end
 -- seem to work like regular grep(1).
 A = 'do not do that, or else'
 print(A:match('or'))
+
+-- Fetching data from the user, on the terminal, is simple in Lua. Probably
+-- bad to use `write()` like this, but I dunno how else to omit the newline.
+--
+-- By default, `read()` uses `io.stdin` (STDIN).
+io.write('Prompt: ')
+Data = io.read()
+print('You said: ' .. Data)
