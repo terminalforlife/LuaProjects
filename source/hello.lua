@@ -23,7 +23,8 @@
 -- Further down for an example of all but the latter.
 -------------------------------------------------------------------------------
 
--- The usual. Same syntax as Perl and many other languages, it seems.
+-- The usual. Same syntax as Perl and many other languages, it seems. This
+-- function cannot redirect data to a file, unlike in Perl.
 print('Hello World!')
 
 -- Variable assignment is as expected, except there doesn't seem to be a need
