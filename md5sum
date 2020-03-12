@@ -1,6 +1,6 @@
 fe9343e0cb2cdefd6cfc2c5421347900  source/hello.lua
 5117e5a897fbbe1dcbc1f2e778a70a85  source/io.lua
 a548518f95304c2b131bd0c8419a34c7  source/love/conf.lua
-9968a529cc72bd6f7c7b814a8816e2ed  source/love/main.lua
+9f5cd054dcd711742e7418bc20adda35  source/love/main.lua
 115afbb01c538cdeace4ab89ac2efa30  source/module.lua
 593d051d423bed89586b0a90d7115de9  source/os.lua
