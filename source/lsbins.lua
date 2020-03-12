@@ -37,12 +37,30 @@ end
 -- Also, to further disappoint, their pattern matching doesn't allow the
 -- `(this|that)` syntax, like in REGEX; this makes argument processing ugly.
 while #arg > 0 do
-	if arg[1]:match('^--version$') or arg[1]:match('^-v$') then
-		print(CurVer); os.exit()
-	elseif arg[1]:match('^--help$') or arg[1]:match('^-h$') then
+	if arg[1]:match('^--help$') or arg[1]:match('^-h$') then
 		Usage()
+	elseif arg[1]:match('^--version$') or arg[1]:match('^-v$') then
+		print(CurVer); os.exit()
 	end
 
 	-- Mimics `shift` by removing the first index in the array.
 	table.remove(arg, 1)
+end
+
+-- Honestly don't understand the `gmatch()` usage here, but hey, it splits.
+-- Some things in Lua really are so convoluted and feel old, but other times
+-- things seem so new and fresh.
+--
+-- Looks like stock Lua doesn't just have a simple f***ing method by which to
+-- view files in a directory. This is one of those basic things EVER, so I'm
+-- pretty underwhelmed to find I can't even do that in Lua.
+--
+-- <rage>From looking online, it seems the only solution is to use `lfs` (not
+-- available for me), `paths` (not available for me), or, and this is the real
+-- kicker: a freaking shell process! If I wanted to use shell, I'd just write
+-- a damn shell script.</rage>
+--
+-- Guess I can't even write lsbins(1) functionality in Lua, without grabbing
+-- all sorts of crap I shouldn't need to use, or using shell. I was so close.
+for Dir in os.getenv('PATH'):gmatch('(.-):') do
 end
